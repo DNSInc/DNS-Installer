@@ -1,8 +1,8 @@
 package com.dnstechpack.installer;
 
-import javax.swing.SwingUtilities;
-
 import com.dnstechpack.installer.gui.InstallerFrame;
+
+import javax.swing.*;
 
 public class Installer {
 

@@ -1,22 +1,21 @@
 package com.dnstechpack.installer.gui;
 
+import com.dnstechpack.installer.util.InstallerUtils;
+
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import com.dnstechpack.installer.util.InstallerUtils;
-
 public class InstallerPanel extends JPanel {
 
-	public InstallerPanel() {
+    public static JTextField installDir;
+
+    public InstallerPanel() {
 		
 		this.setLayout(null);
 		
-		JTextField installDir = new JTextField();
+		installDir = new JTextField();
 		try {
 			
 			installDir.setText(InstallerUtils.defaultDir.getCanonicalPath());
@@ -35,26 +34,18 @@ public class InstallerPanel extends JPanel {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 			
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 			
 			@Override
@@ -62,7 +53,7 @@ public class InstallerPanel extends JPanel {
 				
 				if(e.getButton() == 1) {
 					
-					new FileChooser();
+					new FileChooser(installDir);
 				}
 			}
 		});
