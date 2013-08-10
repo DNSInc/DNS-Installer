@@ -19,4 +19,9 @@ public class InstallerUtils {
             mcDefault.mkdirs();
         }
 	}
+
+    public static String getMCVersion() {
+
+        return "1.6.2";
+    }
 }

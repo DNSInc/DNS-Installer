@@ -1,5 +1,7 @@
 package com.dnstechpack.installer.gui;
 
+import com.dnstechpack.installer.util.InstallerUtils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -31,17 +33,21 @@ public class FileChooser extends JFrame {
     public class FileBrowser extends JFileChooser {
 
         private JTextField textBox;
+        private File defaultDir;
 
         public FileBrowser(File defaultDir, JTextField textBox) {
 
             super(defaultDir);
             this.textBox = textBox;
+            this.defaultDir = defaultDir;
             setupCustom();
         }
 
         public void setupCustom() {
 
             this.addActionListener(new ActionListener() {
+
+                boolean allowed = true;
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -50,8 +56,33 @@ public class FileChooser extends JFrame {
 
                         try {
 
-                            FileChooser.browser.textBox.setText(FileChooser.browser.getSelectedFile().getCanonicalPath());
-                            FileChooser.INSTANCE.setVisible(false);
+                            if(defaultDir == InstallerUtils.mcDefault) {
+
+                                File file = new File(FileChooser.browser.getSelectedFile(), "versions/" + InstallerUtils.getMCVersion() + "/" + InstallerUtils.getMCVersion() + ".jar");
+
+                                if(!file.exists()) {
+
+                                    allowed = false;
+
+                                    JFrame frame = new JFrame("Error");
+                                    frame.setSize(new Dimension(290, 150));
+                                    frame.setResizable(false);
+                                    frame.setLocationRelativeTo(null);
+                                    frame.setVisible(true);
+
+                                    JOptionPane error = new JOptionPane();
+                                    error.setMessage("Make Sure You Have Run The Launcher Once");
+                                    frame.getContentPane().add(error);
+
+                                    return;
+                                }
+                            }
+
+                            if(allowed) {
+
+                                FileChooser.browser.textBox.setText(FileChooser.browser.getSelectedFile().getCanonicalPath());
+                                FileChooser.INSTANCE.setVisible(false);
+                            }
                         } catch (IOException e1) {
 
                             e1.printStackTrace();
