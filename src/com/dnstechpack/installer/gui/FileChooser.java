@@ -1,7 +1,5 @@
 package com.dnstechpack.installer.gui;
 
-import com.dnstechpack.installer.util.InstallerUtils;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +13,7 @@ public class FileChooser extends JFrame {
 
     public static FileChooser INSTANCE;
 
-	public FileChooser(JTextField field) {
+	public FileChooser(JTextField field, File defaultDir) {
 		
 		this.setTitle("Choose Directory");
 		this.setSize(new Dimension(500, 400));
@@ -23,7 +21,7 @@ public class FileChooser extends JFrame {
 		this.setResizable(true);
 		this.setVisible(true);
 		
-		browser = new FileBrowser(InstallerUtils.defaultDir, field);
+		browser = new FileBrowser(defaultDir, field);
 		browser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		this.getContentPane().add(browser);
 

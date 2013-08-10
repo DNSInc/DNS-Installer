@@ -6,8 +6,6 @@ import javax.swing.*;
 
 public class Installer {
 
-	public static InstallerFrame frame;
-	
 	public static void main(String... args) {
 		
 		SwingUtilities.invokeLater(new Runnable() {
@@ -15,7 +13,7 @@ public class Installer {
 			@Override
 			public void run() {
 
-				frame = new InstallerFrame();
+				new InstallerFrame();
 			}
 		});
 	}

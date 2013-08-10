@@ -4,13 +4,19 @@ import java.io.File;
 
 public class InstallerUtils {
 
-	public static File defaultDir = new File(System.getProperty("user.home"), "AppData/Roaming/.dns");
+	public static File dnsDefault = new File(System.getProperty("user.home"), "AppData/Roaming/.dns");
+    public static File mcDefault = new File(System.getProperty("user.home"), "AppData/Roaming/.minecraft");
 	
 	static {
 		
-		if(!defaultDir.exists()) {
+		if(!dnsDefault.exists()) {
 			
-			defaultDir.mkdirs();
+			dnsDefault.mkdirs();
 		}
+
+        if(!mcDefault.exists()) {
+
+            mcDefault.mkdirs();
+        }
 	}
 }
