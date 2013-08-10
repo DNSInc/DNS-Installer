@@ -4,8 +4,7 @@ import com.dnstechpack.installer.util.InstallerUtils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -64,14 +63,28 @@ public class FileChooser extends JFrame {
 
                                     allowed = false;
 
-                                    JFrame frame = new JFrame("Error");
+                                    final JFrame frame = new JFrame("Error");
                                     frame.setSize(new Dimension(290, 150));
                                     frame.setResizable(false);
                                     frame.setLocationRelativeTo(null);
                                     frame.setVisible(true);
 
+                                    JButton option = new JButton("OK");
+                                    option.addMouseListener(new MouseAdapter() {
+
+                                        @Override
+                                        public void mouseClicked(MouseEvent e) {
+
+                                            if(e.getButton() == 1) {
+
+                                                frame.setVisible(false);
+                                            }
+                                        }
+                                    });
+
                                     JOptionPane error = new JOptionPane();
                                     error.setMessage("Make Sure You Have Run The Launcher Once");
+                                    error.setOptions(new Object[] {option});
                                     frame.getContentPane().add(error);
 
                                     return;

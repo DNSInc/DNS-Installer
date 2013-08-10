@@ -3,6 +3,7 @@ package com.dnstechpack.installer.gui;
 import com.dnstechpack.installer.util.InstallerUtils;
 
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
@@ -76,23 +77,7 @@ public class InstallerPanel extends JPanel {
         JButton mcBrowse = new JButton();
         mcBrowse.setText("Browse");
         mcBrowse.setBounds(230, 100, 100, 20);
-        mcBrowse.addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+        mcBrowse.addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
