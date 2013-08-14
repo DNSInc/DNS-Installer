@@ -8,7 +8,7 @@ public class InstallerFrame extends JFrame {
 	public InstallerFrame() {
 		
 		super("DNS Techpack Installer");
-		this.setSize(new Dimension(400, 600));
+		this.setSize(new Dimension(365, 450));
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
