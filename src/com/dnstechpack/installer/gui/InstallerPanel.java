@@ -88,7 +88,12 @@ public class InstallerPanel extends JPanel {
                 }
             }
         });
+        
+        JButton install = new JButton();
+        install.setText("Install");
+        install.setBounds(230, 200, 100, 20);
         this.add(mcBrowse);
+        this.add(install);
 
         mcDir.setEditable(true);
         mcDir.setBounds(20, 100, 200, 20);
