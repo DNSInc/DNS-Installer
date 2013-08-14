@@ -44,7 +44,7 @@ public class InstallerPanel extends JPanel {
 		
 		JButton installBrowse = new JButton();
 		installBrowse.setText("Browse");
-		installBrowse.setBounds(230, 30, 100, 20);
+		installBrowse.setBounds(240, 30, 100, 20);
 		installBrowse.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -76,7 +76,7 @@ public class InstallerPanel extends JPanel {
 
         JButton mcBrowse = new JButton();
         mcBrowse.setText("Browse");
-        mcBrowse.setBounds(230, 100, 100, 20);
+        mcBrowse.setBounds(240, 100, 100, 20);
         mcBrowse.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -91,7 +91,7 @@ public class InstallerPanel extends JPanel {
         
         JButton install = new JButton();
         install.setText("Install");
-        install.setBounds(230, 200, 100, 20);
+        install.setBounds(240, 380, 100, 20);
         this.add(mcBrowse);
         this.add(install);
 
