@@ -1,11 +1,14 @@
 package com.dnstechpack.installer.gui;
 
+import com.dnstechpack.installer.Installer;
+import com.dnstechpack.installer.install.InstallPack;
 import com.dnstechpack.installer.util.InstallerUtils;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.IOException;
 
 public class InstallerPanel extends JPanel {
@@ -24,10 +27,10 @@ public class InstallerPanel extends JPanel {
         insLabel = new JLabel("ModPack Install Directory");
         mcLabel = new JLabel("Base Minecraft Directory");
 
-        insLabel.setBounds(20, 10, 200, 20);
+        insLabel.setBounds(20, 240, 200, 20);
         this.add(insLabel);
 
-        mcLabel.setBounds(20, 80, 200, 20);
+        mcLabel.setBounds(20, 300, 200, 20);
         this.add(mcLabel);
 
 		try {
@@ -39,30 +42,14 @@ public class InstallerPanel extends JPanel {
 			e.printStackTrace();
 		}
 		installDir.setEditable(true);
-		installDir.setBounds(20, 30, 200, 20);
+		installDir.setBounds(20, 260, 200, 20);
 		this.add(installDir);
 		
 		JButton installBrowse = new JButton();
 		installBrowse.setText("Browse");
-		installBrowse.setBounds(240, 30, 100, 20);
-		installBrowse.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-			}
-			
+		installBrowse.setBounds(240, 260, 100, 20);
+		installBrowse.addMouseListener(new MouseAdapter() {
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
@@ -76,7 +63,7 @@ public class InstallerPanel extends JPanel {
 
         JButton mcBrowse = new JButton();
         mcBrowse.setText("Browse");
-        mcBrowse.setBounds(240, 100, 100, 20);
+        mcBrowse.setBounds(240, 320, 100, 20);
         mcBrowse.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -88,15 +75,36 @@ public class InstallerPanel extends JPanel {
                 }
             }
         });
-        
+        this.add(mcBrowse);
+
+        mcDir.setEditable(true);
+        mcDir.setBounds(20, 320, 200, 20);
+        this.add(mcDir);
+
         JButton install = new JButton();
         install.setText("Install");
         install.setBounds(240, 380, 100, 20);
-        this.add(mcBrowse);
+        install.addMouseListener(new InstallPack());
         this.add(install);
+    }
 
-        mcDir.setEditable(true);
-        mcDir.setBounds(20, 100, 200, 20);
-        this.add(mcDir);
-	}
+    @Override
+    public void paint(Graphics g) {
+
+        super.paint(g);
+
+        try {
+
+            Image image = ImageIO.read(Installer.class.getResourceAsStream("/images/dnsImage.png"));
+
+            if(g != null) {
+
+                g.drawImage(image, 30, 20, null);
+                g.dispose();
+            }
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+    }
 }

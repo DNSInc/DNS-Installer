@@ -26,42 +26,9 @@ public class InstallerUtils {
 	
 	public static void moveFolder(File src, File dest) throws IOException {
 
-        FileUtils.moveFile(src, dest);
+        // TODO: Use Our Own Again! commons version renames the folder, not moves it
 
-//		if (src.isDirectory()) {
-//
-//			if (!dest.exists()) {
-//				dest.mkdir();
-//				System.out.println("Directory copied from " + src + "  to " + dest);
-//			}
-//
-//			String files[] = src.list();
-//
-//			for (String file : files) {
-//
-//				File srcFile = new File(src, file);
-//				File destFile = new File(dest, file);
-//
-//				moveFolder(srcFile, destFile);
-//			}
-//
-//		} else {
-//
-//			InputStream in = new FileInputStream(src);
-//			OutputStream out = new FileOutputStream(dest);
-//
-//			byte[] buffer = new byte[1024];
-//
-//			int length;
-//
-//			while ((length = in.read(buffer)) > 0) {
-//				out.write(buffer, 0, length);
-//			}
-//
-//			in.close();
-//			out.close();
-//			System.out.println("File copied from " + src + " to " + dest);
-//		}
+        FileUtils.moveDirectory(src, dest);
 	}
 
     public static String getMCVersion() {
