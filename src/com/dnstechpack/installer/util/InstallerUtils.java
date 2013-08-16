@@ -7,8 +7,9 @@ import java.io.IOException;
 
 public class InstallerUtils {
 
-	public static File dnsDefault = new File(System.getProperty("user.home"), "AppData/Roaming/.dns");
-    public static File mcDefault = new File(System.getProperty("user.home"), "AppData/Roaming/.minecraft");
+    public static File appData = new File(System.getenv("APPDATA"));
+	public static File dnsDefault = new File(appData, "/.dns");
+    public static File mcDefault = new File(appData, "/.minecraft");
     public static File mods = new File("/mods");
 	
 	static {

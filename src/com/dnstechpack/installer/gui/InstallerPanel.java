@@ -99,7 +99,7 @@ public class InstallerPanel extends JPanel {
 
             if(g != null) {
 
-                g.drawImage(image, 30, 20, null);
+                g.drawImage(image, 30, 20, 300, 200, null);
                 g.dispose();
             }
         } catch (Exception e) {

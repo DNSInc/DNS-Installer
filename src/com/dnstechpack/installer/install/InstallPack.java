@@ -21,6 +21,7 @@ public class InstallPack extends MouseAdapter {
         } catch (IOException e1) {
 
             e1.printStackTrace();
+            System.exit(3);
         }
     }
 }
