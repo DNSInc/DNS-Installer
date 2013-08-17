@@ -1,5 +1,6 @@
 package com.dnstechpack.installer.util;
 
+import com.dnstechpack.installer.settings.Settings;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -12,6 +13,7 @@ public class InstallerUtils {
     public static File dnsDefault = new File(appData, "/.dns");
     public static File mcDefault = new File(appData, "/.minecraft");
     public static File mods = new File("/mods");
+    public static Settings settings = new Settings();
 
     static {
 
@@ -31,10 +33,5 @@ public class InstallerUtils {
         // TODO: Use Our Own Again! commons version renames the folder, not moves it
 
         FileUtils.moveDirectory(src, dest);
-    }
-
-    public static String getMCVersion() {
-
-        return "1.6.2";
     }
 }

@@ -61,7 +61,7 @@ public class FileChooser extends JFrame {
 
                             if(defaultDir == InstallerUtils.mcDefault) {
 
-                                File file = new File(FileChooser.browser.getSelectedFile(), "versions/" + InstallerUtils.getMCVersion() + "/" + InstallerUtils.getMCVersion() + ".jar");
+                                File file = new File(FileChooser.browser.getSelectedFile(), "versions/" + InstallerUtils.settings.getMCVersion() + "/" + InstallerUtils.settings.getMCVersion() + ".jar");
 
                                 if(!file.exists()) {
 

@@ -1,6 +1,7 @@
 package com.dnstechpack.installer;
 
 import com.dnstechpack.installer.gui.InstallerFrame;
+import com.dnstechpack.installer.util.InstallerUtils;
 
 import javax.swing.*;
 
@@ -17,5 +18,7 @@ public class Installer {
                 new InstallerFrame();
             }
         });
+
+        System.out.println("ModPack Is For Version " + InstallerUtils.settings.getMCVersion());
     }
 }
