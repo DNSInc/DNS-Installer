@@ -1,5 +1,6 @@
 package com.dnstechpack.installer.install;
 
+import com.dnstechpack.installer.util.ErrorCodes;
 import com.dnstechpack.installer.util.InstallerUtils;
 
 import java.awt.event.MouseAdapter;
@@ -22,7 +23,7 @@ public class InstallPack extends MouseAdapter {
         } catch(IOException e1) {
 
             e1.printStackTrace();
-            System.exit(3);
+            InstallerUtils.shutdown(ErrorCodes.INSTALL_ERROR, e1);
         }
     }
 }
