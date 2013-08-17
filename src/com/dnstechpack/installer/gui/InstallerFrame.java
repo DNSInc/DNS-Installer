@@ -3,8 +3,9 @@ package com.dnstechpack.installer.gui;
 import com.dnstechpack.installer.util.ErrorCodes;
 import com.dnstechpack.installer.util.InstallerUtils;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 

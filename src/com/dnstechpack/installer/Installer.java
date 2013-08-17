@@ -3,7 +3,7 @@ package com.dnstechpack.installer;
 import com.dnstechpack.installer.gui.InstallerFrame;
 import com.dnstechpack.installer.util.InstallerUtils;
 
-import javax.swing.*;
+import javax.swing.SwingUtilities;
 
 
 public class Installer {

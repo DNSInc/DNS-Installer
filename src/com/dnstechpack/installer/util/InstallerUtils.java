@@ -17,7 +17,6 @@ public class InstallerUtils {
     public static File appData = new File(System.getenv("APPDATA"));
     public static File dnsDefault = new File(appData, "/.dns");
     public static File mcDefault = new File(appData, "/.minecraft");
-    public static File mods = new File("/mods");
     public static Settings settings = new Settings();
     public static String newLine = System.lineSeparator();
 
@@ -45,8 +44,6 @@ public class InstallerUtils {
 
         if(code.code != -1) {
 
-            FileWriter writer = null;
-
             try {
 
                 DateFormat format = new SimpleDateFormat("yyyy-mm-dd_kk-mm-ss");
@@ -57,7 +54,7 @@ public class InstallerUtils {
                 writeTo.getParentFile().mkdir();
                 writeTo.createNewFile();
 
-                writer = new FileWriter(writeTo, true);
+                FileWriter writer = new FileWriter(writeTo, true);
                 PrintWriter print = new PrintWriter(writer);
                 writer.write("DNS Installer Crash Report" + newLine);
                 writer.write("Please Send To A Rep At http://esper.net/ in channel #dns" + newLine);
