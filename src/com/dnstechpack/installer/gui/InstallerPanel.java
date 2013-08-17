@@ -11,19 +11,21 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 
+
 public class InstallerPanel extends JPanel {
 
     public static JTextField installDir;
     public static JTextField mcDir;
 
     public InstallerPanel() {
-		
-		this.setLayout(null);
+
+        this.setLayout(null);
 
         JLabel insLabel, mcLabel;
 
-		installDir = new JTextField();
+        installDir = new JTextField();
         mcDir = new JTextField();
+
         insLabel = new JLabel("ModPack Install Directory");
         mcLabel = new JLabel("Base Minecraft Directory");
 
@@ -33,33 +35,33 @@ public class InstallerPanel extends JPanel {
         mcLabel.setBounds(20, 300, 200, 20);
         this.add(mcLabel);
 
-		try {
-			
-			installDir.setText(InstallerUtils.dnsDefault.getCanonicalPath());
-            mcDir.setText(InstallerUtils.mcDefault.getCanonicalPath());
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}
-		installDir.setEditable(true);
-		installDir.setBounds(20, 260, 200, 20);
-		this.add(installDir);
-		
-		JButton installBrowse = new JButton();
-		installBrowse.setText("Browse");
-		installBrowse.setBounds(240, 260, 100, 20);
-		installBrowse.addMouseListener(new MouseAdapter() {
+        try {
 
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				if(e.getButton() == 1) {
-					
-					new FileChooser(installDir, InstallerUtils.dnsDefault);
-				}
-			}
-		});
-		this.add(installBrowse);
+            installDir.setText(InstallerUtils.dnsDefault.getCanonicalPath());
+            mcDir.setText(InstallerUtils.mcDefault.getCanonicalPath());
+        } catch(IOException e) {
+
+            e.printStackTrace();
+        }
+        installDir.setEditable(true);
+        installDir.setBounds(20, 260, 200, 20);
+        this.add(installDir);
+
+        JButton installBrowse = new JButton();
+        installBrowse.setText("Browse");
+        installBrowse.setBounds(240, 260, 100, 20);
+        installBrowse.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                if(e.getButton() == 1) {
+
+                    new FileChooser(installDir, InstallerUtils.dnsDefault);
+                }
+            }
+        });
+        this.add(installBrowse);
 
         JButton mcBrowse = new JButton();
         mcBrowse.setText("Browse");
@@ -69,7 +71,7 @@ public class InstallerPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
 
-                if (e.getButton() == 1) {
+                if(e.getButton() == 1) {
 
                     new FileChooser(mcDir, InstallerUtils.mcDefault);
                 }
@@ -102,7 +104,7 @@ public class InstallerPanel extends JPanel {
                 g.drawImage(image, 30, 20, 300, 200, null);
                 g.dispose();
             }
-        } catch (Exception e) {
+        } catch(Exception e) {
 
             e.printStackTrace();
         }

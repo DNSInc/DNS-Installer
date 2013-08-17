@@ -4,9 +4,13 @@ import com.dnstechpack.installer.util.InstallerUtils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+
 
 public class FileChooser extends JFrame {
 
@@ -14,20 +18,20 @@ public class FileChooser extends JFrame {
 
     public static FileChooser INSTANCE;
 
-	public FileChooser(JTextField field, File defaultDir) {
-		
-		this.setTitle("Choose Directory");
-		this.setSize(new Dimension(500, 400));
-		this.setLocationRelativeTo(null);
-		this.setResizable(true);
-		this.setVisible(true);
-		
-		browser = new FileBrowser(defaultDir, field);
-		browser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		this.getContentPane().add(browser);
+    public FileChooser(JTextField field, File defaultDir) {
+
+        this.setTitle("Choose Directory");
+        this.setSize(new Dimension(500, 400));
+        this.setLocationRelativeTo(null);
+        this.setResizable(true);
+        this.setVisible(true);
+
+        browser = new FileBrowser(defaultDir, field);
+        browser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        this.getContentPane().add(browser);
 
         INSTANCE = this;
-	}
+    }
 
     public class FileBrowser extends JFileChooser {
 
@@ -96,7 +100,7 @@ public class FileChooser extends JFrame {
                                 FileChooser.browser.textBox.setText(FileChooser.browser.getSelectedFile().getCanonicalPath());
                                 FileChooser.INSTANCE.setVisible(false);
                             }
-                        } catch (IOException e1) {
+                        } catch(IOException e1) {
 
                             e1.printStackTrace();
                         }
