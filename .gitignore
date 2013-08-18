@@ -9,3 +9,6 @@
 *.iml
 *.MF
 res/images/dnsImage.png
+crash-logs/
+pack/
+tmp.dns/

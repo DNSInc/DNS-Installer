@@ -18,6 +18,7 @@ public class InstallerUtils {
     public static File appData = new File(System.getenv("APPDATA"));
     public static File dnsDefault = new File(appData, "/.dns");
     public static File mcDefault = new File(appData, "/.minecraft");
+    public static File tmpDir = new File("./tmp.dns");
     public static Settings settings = new Settings();
     public static String newLine = System.lineSeparator();
 
@@ -31,6 +32,11 @@ public class InstallerUtils {
         if(!mcDefault.exists()) {
 
             mcDefault.mkdirs();
+        }
+
+        if(!tmpDir.exists()) {
+
+            tmpDir.mkdirs();
         }
     }
 
