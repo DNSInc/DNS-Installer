@@ -1,5 +1,6 @@
 package com.dnstechpack.installer.util;
 
+import com.dnstechpack.installer.enums.EnumErrorCodes;
 import com.dnstechpack.installer.settings.Settings;
 import org.apache.commons.io.FileUtils;
 
@@ -40,9 +41,9 @@ public class InstallerUtils {
         FileUtils.moveDirectory(src, dest);
     }
 
-    public static void shutdown(ErrorCodes code, Exception ex) {
+    public static void shutdown(EnumErrorCodes code, Exception ex) {
 
-        if(code.code != -1) {
+        if(code != EnumErrorCodes.CLIENT_QUIT) {
 
             try {
 
@@ -65,11 +66,11 @@ public class InstallerUtils {
 
                 print.close();
                 writer.close();
-                System.exit(code.code);
             } catch(IOException e) {
 
                 e.printStackTrace();
             }
         }
+        System.exit(code.code);
     }
 }

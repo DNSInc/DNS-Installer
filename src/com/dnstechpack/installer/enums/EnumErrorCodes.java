@@ -1,19 +1,19 @@
-package com.dnstechpack.installer.util;
+package com.dnstechpack.installer.enums;
 
 /**
  * @Author ShadowChild.
  */
-public enum ErrorCodes {
+public enum EnumErrorCodes {
 
     CLIENT_QUIT(-1),
     INSTALL_ERROR(1, "Installation Failed At A Critical Point");
 
-    private ErrorCodes(int code) {
+    private EnumErrorCodes(int code) {
 
         this.code = code;
     }
 
-    private ErrorCodes(int code, String description) {
+    private EnumErrorCodes(int code, String description) {
 
         this.code = code;
         this.description = description;

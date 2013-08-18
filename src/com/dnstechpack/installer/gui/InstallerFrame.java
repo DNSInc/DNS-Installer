@@ -1,6 +1,6 @@
 package com.dnstechpack.installer.gui;
 
-import com.dnstechpack.installer.util.ErrorCodes;
+import com.dnstechpack.installer.enums.EnumErrorCodes;
 import com.dnstechpack.installer.util.InstallerUtils;
 
 import javax.swing.JFrame;
@@ -22,7 +22,7 @@ public class InstallerFrame extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
 
-                InstallerUtils.shutdown(ErrorCodes.CLIENT_QUIT, null);
+                InstallerUtils.shutdown(EnumErrorCodes.CLIENT_QUIT, null);
             }
         });
         this.setLocationRelativeTo(null);
