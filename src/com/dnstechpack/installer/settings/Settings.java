@@ -29,4 +29,8 @@ public class Settings {
 
         return properties.getProperty("MCVersion");
     }
+    
+    public String getDNSVersion() {
+    	return properties.getProperty("DNSVersion");
+    }
 }

@@ -39,6 +39,8 @@ public class JsonUtils {
         writer.name("dns");
         writer.beginObject();
         writer.name("name").value("DNS Techpack");
+        writer.name("gameDir").value(InstallerUtils.dnsDefault.toString());
+        writer.name("lastVersionId").value(value);
         writer.endObject();
         writer.endObject();
         writer.endObject();
