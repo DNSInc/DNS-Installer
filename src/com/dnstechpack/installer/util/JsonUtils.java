@@ -36,14 +36,17 @@ public class JsonUtils {
         writer.beginObject();
         writer.name("profiles");
         writer.beginObject();
-        writer.name("dns");
+        writer.name("Dns Techpack");
         writer.beginObject();
         writer.name("name").value("DNS Techpack");
         writer.name("gameDir").value(InstallerUtils.dnsDefault.toString());
-        writer.name("lastVersionId").value(value);
+        writer.name("lastVersionId").value(InstallerUtils.settings.getMCVersion() + "- DNS" + InstallerUtils.settings.getDNSVersion());
         writer.endObject();
+        writer.name("selectedProfile").value("Dns Techpack");
         writer.endObject();
         writer.endObject();
         writer.close();
+        System.out.print("Adding DNS Profile");
+        newProfile.renameTo(new File(InstallerUtils.mcDefault + "/launcher_profiles.json"));
     }
 }
