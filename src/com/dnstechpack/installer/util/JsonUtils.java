@@ -28,7 +28,10 @@ public class JsonUtils {
             newProfile.getParentFile().mkdir();
             newProfile.createNewFile();
         }
-        JsonReader reader = new JsonReader(new FileReader(oldProfile.getCanonicalFile()));
+        
+        oldProfile.renameTo(new File(InstallerUtils.mcDefault + "/launcher_profiles_backup.json"));
+        System.out.println("Creating A Backup Of User Profiles");
+        
         JsonWriter writer = new JsonWriter(new FileWriter(newProfile.getCanonicalFile()));
         
         writer.setIndent("    ");
@@ -42,6 +45,5 @@ public class JsonUtils {
         writer.endObject();
         writer.endObject();
         writer.close();
-        reader.close();
     }
 }
