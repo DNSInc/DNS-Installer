@@ -90,7 +90,7 @@ public class InstallerPanel extends JPanel {
         JButton install = new JButton();
         install.setText("Install");
         install.setBounds(240, 380, 100, 20);
-        install.addMouseListener(new InstallPack());
+        install.addMouseListener(new InstallPack(mcDir.getText(), installDir.getText()));
         this.add(install);
     }
 
