@@ -8,10 +8,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+
+import org.apache.commons.io.FileUtils;
 
 
 /**
@@ -69,5 +72,24 @@ public class InstallPack extends MouseAdapter {
             e1.printStackTrace();
             InstallerUtils.shutdown(EnumErrorCodes.INSTALL_ERROR, e1);
         }
+        
+    	File toDNS = new File(InstallerUtils.tmpDir, "/toDNS");
+        File toMC = new File(InstallerUtils.tmpDir, "/toMC");
+        File mc = new File(InstallerUtils.mcDefault + "/");
+        File dns = new File(InstallerUtils.dnsDefault + "/");
+        
+        try {
+			FileUtils.copyDirectory(toDNS, dns);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        
+        try {
+			FileUtils.copyDirectory(toMC, mc);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
     }
 }
