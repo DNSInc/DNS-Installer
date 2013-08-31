@@ -54,7 +54,8 @@ public class JsonUtils {
 
             JsonNodeFactories.field("name", JsonNodeFactories.string("DNS Techpack")),
             JsonNodeFactories.field("lastVersionId", JsonNodeFactories.string(InstallerUtils.settings.getLastVersionId())),
-            JsonNodeFactories.field("gameDir", JsonNodeFactories.string(installDir))
+            JsonNodeFactories.field("gameDir", JsonNodeFactories.string(installDir)),
+            JsonNodeFactories.field("javaArgs", JsonNodeFactories.string("-XX:MaxPermSize=1024m"))
         };
 
         if(profileNode != null) {

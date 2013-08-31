@@ -5,6 +5,7 @@ import com.dnstechpack.installer.util.InstallerUtils;
 import com.dnstechpack.installer.util.JsonUtils;
 import org.apache.commons.io.FileUtils;
 
+import javax.swing.JOptionPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -104,6 +105,7 @@ public class InstallPack extends MouseAdapter {
             File dns = new File(installDir + "/");
 
             try {
+
                 FileUtils.copyDirectory(toDNS, dns);
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
@@ -111,11 +113,14 @@ public class InstallPack extends MouseAdapter {
             }
 
             try {
+
                 FileUtils.copyDirectory(toMC, mc);
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
+
+            JOptionPane.showMessageDialog(null, "Finished Installing");
         }
     }
 }
