@@ -2,12 +2,13 @@ package com.dnstechpack.installer.gui;
 
 import com.dnstechpack.installer.util.InstallerUtils;
 
-import javax.swing.*;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -66,31 +67,7 @@ public class FileChooser extends JFrame {
                                 if(!file.exists()) {
 
                                     allowed = false;
-
-                                    final JFrame frame = new JFrame("Error");
-                                    frame.setSize(new Dimension(290, 150));
-                                    frame.setResizable(false);
-                                    frame.setLocationRelativeTo(null);
-                                    frame.setVisible(true);
-
-                                    JButton option = new JButton("OK");
-                                    option.addMouseListener(new MouseAdapter() {
-
-                                        @Override
-                                        public void mouseClicked(MouseEvent e) {
-
-                                            if(e.getButton() == 1) {
-
-                                                frame.setVisible(false);
-                                            }
-                                        }
-                                    });
-
-                                    JOptionPane error = new JOptionPane();
-                                    error.setMessage("Make Sure You Have Run The Launcher Once");
-                                    error.setOptions(new Object[] {option});
-                                    frame.getContentPane().add(error);
-
+                                    JOptionPane.showMessageDialog(null, "Make Sure You Have Run The Launcher Once");
                                     return;
                                 }
                             }

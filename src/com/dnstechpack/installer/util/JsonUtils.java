@@ -20,17 +20,10 @@ public class JsonUtils {
         System.out.println(mcDir + "\n" + installDir);
 
     	File oldProfile = new File(mcDir, "/launcher_profiles.json");
-        File newProfile = new File(installDir, "/profile/launcher_profiles.json");
         
         if(!oldProfile.exists()) {
 
         	System.out.println("Please run minecraft once before trying to install the pack");
-        }
-
-        if(!newProfile.exists()) {
-
-            newProfile.getParentFile().mkdir();
-            newProfile.createNewFile();
         }
         
         oldProfile.renameTo(new File(mcDir, "/launcher_profiles_backup.json"));
@@ -53,7 +46,7 @@ public class JsonUtils {
         JsonField[] fields = new JsonField[] {
 
             JsonNodeFactories.field("name", JsonNodeFactories.string("DNS Techpack")),
-            JsonNodeFactories.field("lastVersionId", JsonNodeFactories.string(InstallerUtils.settings.getLastVersionId())),
+            JsonNodeFactories.field("lastVersionId", JsonNodeFactories.string(InstallerUtils.settings.getJarVersion())),
             JsonNodeFactories.field("gameDir", JsonNodeFactories.string(installDir)),
             JsonNodeFactories.field("javaArgs", JsonNodeFactories.string("-XX:MaxPermSize=1024m"))
         };
@@ -97,6 +90,6 @@ public class JsonUtils {
 //        writer.endObject();
 //        writer.close();
         System.out.print("Adding DNS Profile");
-        newProfile.renameTo(new File(InstallerUtils.mcDefault + "/launcher_profiles.json"));
+//        newProfile.renameTo(new File(InstallerUtils.mcDefault + "/launcher_profiles.json"));
     }
 }

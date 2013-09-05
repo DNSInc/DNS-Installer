@@ -51,6 +51,44 @@ public class InstallPack extends MouseAdapter {
         @Override
         public void run() {
 
+            File mcJar = new File(mcDir + "/versions/" + InstallerUtils.settings.getMCVersion() + "/" + InstallerUtils.settings.getMCVersion() + ".jar");
+            try {
+                System.out.println(mcJar.getCanonicalPath());
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
+            if(!mcJar.exists()) {
+
+                JOptionPane.showMessageDialog(null, "Please Run Minecraft With Version " + InstallerUtils.settings.getMCVersion() + " Before Installing!");
+                return;
+            }
+
+            unZip();
+
+            File toDNS = new File(InstallerUtils.tmpDir, "/toDNS");
+            File toMC = new File(InstallerUtils.tmpDir, "/toMC");
+            File mc = new File(mcDir + "/");
+            File dns = new File(installDir + "/");
+
+            if(ForgeInstall.installForge(mc)) {
+
+                try {
+
+                    FileUtils.copyDirectory(toDNS, dns);
+                    FileUtils.copyDirectory(toMC, mc);
+                    JsonUtils.updateProfile(mcDir, installDir);
+                } catch (IOException e) {
+
+                    e.printStackTrace();
+                    InstallerUtils.shutdown(EnumErrorCodes.INSTALL_ERROR, e);
+                }
+
+                JOptionPane.showMessageDialog(null, "Finished Installing");
+            }
+        }
+
+        private void unZip() {
+
             try {
 
                 ZipFile zipFile = new ZipFile(new File("./pack/pack.zip").getCanonicalFile());
@@ -91,36 +129,11 @@ public class InstallPack extends MouseAdapter {
                     fos.close();
                 }
                 zipFile.close();
-
-                JsonUtils.updateProfile(mcDir, installDir);
             } catch(Exception e1) {
 
                 e1.printStackTrace();
                 InstallerUtils.shutdown(EnumErrorCodes.INSTALL_ERROR, e1);
             }
-
-            File toDNS = new File(InstallerUtils.tmpDir, "/toDNS");
-            File toMC = new File(InstallerUtils.tmpDir, "/toMC");
-            File mc = new File(mcDir + "/");
-            File dns = new File(installDir + "/");
-
-            try {
-
-                FileUtils.copyDirectory(toDNS, dns);
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
-
-            try {
-
-                FileUtils.copyDirectory(toMC, mc);
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
-
-            JOptionPane.showMessageDialog(null, "Finished Installing");
         }
     }
 }

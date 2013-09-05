@@ -35,7 +35,7 @@ public class Settings {
     	return properties.getProperty("DNSVersion");
     }
 
-    public String getLastVersionId() {
+    public String getJarVersion() {
 
         return getMCVersion() + "-DNS" + getDNSVersion();
     }
