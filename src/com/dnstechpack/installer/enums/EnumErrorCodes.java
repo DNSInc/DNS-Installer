@@ -6,7 +6,8 @@ package com.dnstechpack.installer.enums;
 public enum EnumErrorCodes {
 
     CLIENT_QUIT(-1),
-    INSTALL_ERROR(1, "Installation Failed At A Critical Point");
+    INSTALL_ERROR(1, "Installation Failed At A Critical Point"),
+    FORGE_ERROR(2, "Forge Could Not Be Installed");
 
     private EnumErrorCodes(int code) {
 

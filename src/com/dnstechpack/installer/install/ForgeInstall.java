@@ -1,5 +1,6 @@
 package com.dnstechpack.installer.install;
 
+import com.dnstechpack.installer.enums.EnumErrorCodes;
 import com.dnstechpack.installer.util.InstallerUtils;
 import org.apache.commons.io.FileUtils;
 
@@ -17,13 +18,16 @@ public class ForgeInstall {
 
         File oldJar = new File(mcDir + "/versions/" + InstallerUtils.settings.getMCVersion() + "/" + InstallerUtils.settings.getMCVersion() + ".jar");
         File newJar = new File(mcDir + "/versions/" + InstallerUtils.settings.getJarVersion() + "/" + InstallerUtils.settings.getJarVersion() + ".jar");
-        File oldJson = new File(mcDir + "/versions/" + InstallerUtils.settings.getMCVersion() + "/" + InstallerUtils.settings.getMCVersion() + ".json");
+        File oldJson = new File(InstallerUtils.tmpDir + "/version.json"); // temp code
         File newJson = new File(mcDir + "/versions/" + InstallerUtils.settings.getJarVersion() + "/" + InstallerUtils.settings.getJarVersion() + ".json");
 
         try {
+
             System.out.println(oldJar.getCanonicalPath());
         } catch(IOException e) {
+
             e.printStackTrace();
+            InstallerUtils.shutdown(EnumErrorCodes.FORGE_ERROR, e);
         }
 
         if(!oldJar.exists()) {
@@ -46,8 +50,10 @@ public class ForgeInstall {
         } catch(IOException e) {
 
             e.printStackTrace();
+            InstallerUtils.shutdown(EnumErrorCodes.FORGE_ERROR, e);
         }
-//        oldJar.renameTo(newJar);
+
+        System.out.println("Installing Forge And Libraries");
 
         return true;
     }

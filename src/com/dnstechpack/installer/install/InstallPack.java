@@ -83,6 +83,15 @@ public class InstallPack extends MouseAdapter {
                     InstallerUtils.shutdown(EnumErrorCodes.INSTALL_ERROR, e);
                 }
 
+                try {
+
+                    FileUtils.cleanDirectory(InstallerUtils.tmpDir);
+                } catch(IOException e) {
+
+                    e.printStackTrace();
+                    InstallerUtils.shutdown(EnumErrorCodes.INSTALL_ERROR, e);
+                }
+
                 JOptionPane.showMessageDialog(null, "Finished Installing");
             }
         }
