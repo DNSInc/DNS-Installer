@@ -55,7 +55,7 @@ public class JsonUtils {
 
             HashMap<JsonStringNode, JsonNode> profileCopy = Maps.newHashMap(profileNode.getNode("profiles").getFields());
             HashMap<JsonStringNode, JsonNode> rootCopy = Maps.newHashMap(profileNode.getFields());
-            profileCopy.put(JsonNodeFactories.string("DNS Techpack"), JsonNodeFactories.object(fields));
+            profileCopy.put(JsonNodeFactories.string(InstallerUtils.settings.getProfileName()), JsonNodeFactories.object(fields));
             JsonRootNode profileJsonCopy = JsonNodeFactories.object(profileCopy);
 
             rootCopy.put(JsonNodeFactories.string("profiles"), profileJsonCopy);

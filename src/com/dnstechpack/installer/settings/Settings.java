@@ -42,6 +42,6 @@ public class Settings {
 
     public String getProfileName() {
 
-        return properties.getProperty("PackName");
+        return properties.getProperty("PackName") + " " + getDNSVersion();
     }
 }
