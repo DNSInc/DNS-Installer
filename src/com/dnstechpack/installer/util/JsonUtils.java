@@ -45,7 +45,7 @@ public class JsonUtils {
 
         JsonField[] fields = new JsonField[] {
 
-            JsonNodeFactories.field("name", JsonNodeFactories.string("DNS Techpack")),
+            JsonNodeFactories.field("name", JsonNodeFactories.string(InstallerUtils.settings.getProfileName())),
             JsonNodeFactories.field("lastVersionId", JsonNodeFactories.string(InstallerUtils.settings.getJarVersion())),
             JsonNodeFactories.field("gameDir", JsonNodeFactories.string(installDir)),
             JsonNodeFactories.field("javaArgs", JsonNodeFactories.string("-XX:MaxPermSize=1024m"))

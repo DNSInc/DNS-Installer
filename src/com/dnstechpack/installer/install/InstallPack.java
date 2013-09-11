@@ -1,6 +1,7 @@
 package com.dnstechpack.installer.install;
 
 import com.dnstechpack.installer.enums.EnumErrorCodes;
+import com.dnstechpack.installer.gui.InstallerPanel;
 import com.dnstechpack.installer.util.InstallerUtils;
 import com.dnstechpack.installer.util.JsonUtils;
 import org.apache.commons.io.FileUtils;
@@ -36,6 +37,7 @@ public class InstallPack extends MouseAdapter {
     @Override
     public void mouseClicked(MouseEvent e) {
 
+        InstallerPanel.install.setEnabled(false);
         new InstallThread();
     }
 
@@ -93,6 +95,7 @@ public class InstallPack extends MouseAdapter {
                 }
 
                 JOptionPane.showMessageDialog(null, "Finished Installing");
+                InstallerPanel.install.setEnabled(true);
             }
         }
 

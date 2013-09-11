@@ -39,4 +39,9 @@ public class Settings {
 
         return getMCVersion() + "-DNS" + getDNSVersion();
     }
+
+    public String getProfileName() {
+
+        return properties.getProperty("PackName");
+    }
 }

@@ -20,6 +20,7 @@ public class InstallerPanel extends JPanel {
 
     public static JTextField installDir;
     public static JTextField mcDir;
+    public static JButton install;
 
     public InstallerPanel() {
 
@@ -87,7 +88,7 @@ public class InstallerPanel extends JPanel {
         mcDir.setBounds(20, 320, 200, 20);
         this.add(mcDir);
 
-        JButton install = new JButton();
+        install = new JButton();
         install.setText("Install");
         install.setBounds(240, 380, 100, 20);
         install.addMouseListener(new InstallPack(mcDir.getText(), installDir.getText()));
