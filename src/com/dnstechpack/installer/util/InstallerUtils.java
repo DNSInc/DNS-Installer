@@ -1,6 +1,5 @@
 package com.dnstechpack.installer.util;
 
-import com.dnstechpack.installer.enums.EnumErrorCodes;
 import com.dnstechpack.installer.settings.Settings;
 import org.apache.commons.io.FileUtils;
 
@@ -47,9 +46,9 @@ public class InstallerUtils {
         FileUtils.moveDirectory(src, dest);
     }
 
-    public static void shutdown(EnumErrorCodes code, Exception ex) {
+    public static void shutdown(Exception ex) {
 
-        if(code != EnumErrorCodes.CLIENT_QUIT) {
+        if(ex != null) {
 
             try {
 
@@ -65,8 +64,6 @@ public class InstallerUtils {
                 PrintWriter print = new PrintWriter(writer);
                 writer.write("DNS Installer Crash Report" + newLine);
                 writer.write("Please Send To A Rep At http://esper.net/ in channel #dns" + newLine);
-                writer.write("Error Code - " + code.code + newLine);
-                writer.write("Description - " + code.description + newLine);
 
                 ex.printStackTrace(print);
 
@@ -77,6 +74,6 @@ public class InstallerUtils {
                 e.printStackTrace();
             }
         }
-        System.exit(code.code);
+        System.exit(-1);
     }
 }

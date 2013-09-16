@@ -1,6 +1,5 @@
 package com.dnstechpack.installer.gui;
 
-import com.dnstechpack.installer.enums.EnumErrorCodes;
 import com.dnstechpack.installer.util.InstallerUtils;
 
 import javax.swing.JFrame;
@@ -12,7 +11,7 @@ import java.awt.event.WindowEvent;
 
 public class InstallerFrame extends JFrame {
 
-    public InstallerFrame() {
+    public InstallerFrame() throws Exception {
 
         super("DNS Techpack Installer");
         this.setSize(new Dimension(365, 450));
@@ -22,7 +21,7 @@ public class InstallerFrame extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
 
-                InstallerUtils.shutdown(EnumErrorCodes.CLIENT_QUIT, null);
+                InstallerUtils.shutdown(null);
             }
         });
         this.setLocationRelativeTo(null);

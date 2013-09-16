@@ -1,6 +1,5 @@
 package com.dnstechpack.installer.install;
 
-import com.dnstechpack.installer.enums.EnumErrorCodes;
 import com.dnstechpack.installer.gui.InstallerPanel;
 import com.dnstechpack.installer.util.InstallerUtils;
 import com.dnstechpack.installer.util.JsonUtils;
@@ -23,27 +22,29 @@ import java.util.zip.ZipFile;
  */
 public class InstallPack extends MouseAdapter {
 
-    private String mcDir;
-    private String installDir;
-
-    public InstallPack(String mcDir, String installDir) {
+    public InstallPack() {
 
         super();
-
-        this.mcDir = mcDir;
-        this.installDir = installDir;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
 
         InstallerPanel.install.setEnabled(false);
-        new InstallThread();
+        new InstallThread(InstallerPanel.mcDir.getText(), InstallerPanel.installDir.getText());
     }
 
     public class InstallThread extends Thread {
 
-        public InstallThread() {
+        private String mcDir;
+        private String installDir;
+
+        public InstallThread(String mcDir, String installDir) {
+
+            super();
+
+            this.mcDir = mcDir;
+            this.installDir = installDir;
 
             this.setDaemon(true);
             this.setName("InstallTread");
@@ -52,6 +53,8 @@ public class InstallPack extends MouseAdapter {
 
         @Override
         public void run() {
+
+//            DownloadUtils.startRandomDownload();
 
             File mcJar = new File(mcDir + "/versions/" + InstallerUtils.settings.getMCVersion() + "/" + InstallerUtils.settings.getMCVersion() + ".jar");
             try {
@@ -64,6 +67,8 @@ public class InstallPack extends MouseAdapter {
                 JOptionPane.showMessageDialog(null, "Please Run Minecraft With Version " + InstallerUtils.settings.getMCVersion() + " Before Installing!");
                 return;
             }
+
+            InstallerPanel.progress.setValue(10);
 
             unZip();
 
@@ -79,10 +84,10 @@ public class InstallPack extends MouseAdapter {
                     FileUtils.copyDirectory(toDNS, dns);
                     FileUtils.copyDirectory(toMC, mc);
                     JsonUtils.updateProfile(mcDir, installDir);
-                } catch (IOException e) {
+                } catch(IOException e) {
 
                     e.printStackTrace();
-                    InstallerUtils.shutdown(EnumErrorCodes.INSTALL_ERROR, e);
+                    InstallerUtils.shutdown(e);
                 }
 
                 try {
@@ -91,9 +96,10 @@ public class InstallPack extends MouseAdapter {
                 } catch(IOException e) {
 
                     e.printStackTrace();
-                    InstallerUtils.shutdown(EnumErrorCodes.INSTALL_ERROR, e);
+                    InstallerUtils.shutdown(e);
                 }
 
+                InstallerPanel.progress.setValue(100);
                 JOptionPane.showMessageDialog(null, "Finished Installing");
                 InstallerPanel.install.setEnabled(true);
             }
@@ -141,10 +147,12 @@ public class InstallPack extends MouseAdapter {
                     fos.close();
                 }
                 zipFile.close();
+
+                InstallerPanel.progress.setValue(50);
             } catch(Exception e1) {
 
                 e1.printStackTrace();
-                InstallerUtils.shutdown(EnumErrorCodes.INSTALL_ERROR, e1);
+                InstallerUtils.shutdown(e1);
             }
         }
     }

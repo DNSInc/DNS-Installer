@@ -15,7 +15,13 @@ public class Installer {
             @Override
             public void run() {
 
-                new InstallerFrame();
+                try {
+                    new InstallerFrame();
+                } catch(Exception e) {
+
+                    e.printStackTrace();
+                    InstallerUtils.shutdown(e);
+                }
             }
         });
 

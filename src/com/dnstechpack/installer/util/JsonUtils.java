@@ -2,9 +2,11 @@ package com.dnstechpack.installer.util;
 
 import argo.format.PrettyJsonFormatter;
 import argo.jdom.*;
+import com.dnstechpack.installer.gui.InstallerPanel;
 import com.google.common.base.Charsets;
 import com.google.common.collect.Maps;
 import com.google.common.io.Files;
+import org.apache.commons.io.FileUtils;
 
 import java.io.*;
 import java.util.HashMap;
@@ -19,14 +21,15 @@ public class JsonUtils {
 
         System.out.println(mcDir + "\n" + installDir);
 
-    	File oldProfile = new File(mcDir, "/launcher_profiles.json");
-        
+        File oldProfile = new File(mcDir, "/launcher_profiles.json");
+
         if(!oldProfile.exists()) {
 
-        	System.out.println("Please run minecraft once before trying to install the pack");
+            System.out.println("Please run minecraft once before trying to install the pack");
         }
-        
-        oldProfile.renameTo(new File(mcDir, "/launcher_profiles_backup.json"));
+
+        FileUtils.copyFile(oldProfile, new File(mcDir, "/launcher_Profiles_backup.json"), true);
+//        oldProfile.renameTo(new File(mcDir, "/launcher_profiles_backup.json"));
         System.out.println("Creating A Backup Of User Profiles");
 
         JdomParser profileParser = new JdomParser();
@@ -45,10 +48,10 @@ public class JsonUtils {
 
         JsonField[] fields = new JsonField[] {
 
-            JsonNodeFactories.field("name", JsonNodeFactories.string(InstallerUtils.settings.getProfileName())),
-            JsonNodeFactories.field("lastVersionId", JsonNodeFactories.string(InstallerUtils.settings.getJarVersion())),
-            JsonNodeFactories.field("gameDir", JsonNodeFactories.string(installDir)),
-            JsonNodeFactories.field("javaArgs", JsonNodeFactories.string("-XX:MaxPermSize=1024m"))
+                JsonNodeFactories.field("name", JsonNodeFactories.string(InstallerUtils.settings.getProfileName())),
+                JsonNodeFactories.field("lastVersionId", JsonNodeFactories.string(InstallerUtils.settings.getJarVersion())),
+                JsonNodeFactories.field("gameDir", JsonNodeFactories.string(installDir)),
+                JsonNodeFactories.field("javaArgs", JsonNodeFactories.string("-XX:MaxPermSize=1024m -Xmx1G"))
         };
 
         if(profileNode != null) {
@@ -71,6 +74,7 @@ public class JsonUtils {
         } catch(Exception e) {
 
             e.printStackTrace();
+            InstallerUtils.shutdown(e);
         }
 
 //        JsonWriter writer = new JsonWriter(new FileWriter(newProfile.getCanonicalFile()));
@@ -90,6 +94,7 @@ public class JsonUtils {
 //        writer.endObject();
 //        writer.close();
         System.out.print("Adding DNS Profile");
+        InstallerPanel.progress.setValue(90);
 //        newProfile.renameTo(new File(InstallerUtils.mcDefault + "/launcher_profiles.json"));
     }
 }

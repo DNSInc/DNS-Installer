@@ -5,10 +5,7 @@ import com.dnstechpack.installer.install.InstallPack;
 import com.dnstechpack.installer.util.InstallerUtils;
 
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -21,6 +18,8 @@ public class InstallerPanel extends JPanel {
     public static JTextField installDir;
     public static JTextField mcDir;
     public static JButton install;
+
+    public static JProgressBar progress;
 
     public InstallerPanel() {
 
@@ -91,8 +90,12 @@ public class InstallerPanel extends JPanel {
         install = new JButton();
         install.setText("Install");
         install.setBounds(240, 380, 100, 20);
-        install.addMouseListener(new InstallPack(mcDir.getText(), installDir.getText()));
+        install.addMouseListener(new InstallPack());
         this.add(install);
+
+        progress = new JProgressBar(0, 100);
+        progress.setBounds(20, 355, 320, 10);
+        this.add(progress);
     }
 
     @Override

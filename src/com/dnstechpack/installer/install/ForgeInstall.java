@@ -1,6 +1,6 @@
 package com.dnstechpack.installer.install;
 
-import com.dnstechpack.installer.enums.EnumErrorCodes;
+import com.dnstechpack.installer.gui.InstallerPanel;
 import com.dnstechpack.installer.util.InstallerUtils;
 import org.apache.commons.io.FileUtils;
 
@@ -27,7 +27,7 @@ public class ForgeInstall {
         } catch(IOException e) {
 
             e.printStackTrace();
-            InstallerUtils.shutdown(EnumErrorCodes.FORGE_ERROR, e);
+            InstallerUtils.shutdown(e);
         }
 
         if(!oldJar.exists()) {
@@ -50,11 +50,12 @@ public class ForgeInstall {
         } catch(IOException e) {
 
             e.printStackTrace();
-            InstallerUtils.shutdown(EnumErrorCodes.FORGE_ERROR, e);
+            InstallerUtils.shutdown(e);
         }
 
         System.out.println("Installing Forge And Libraries");
 
+        InstallerPanel.progress.setValue(75);
         return true;
     }
 }
