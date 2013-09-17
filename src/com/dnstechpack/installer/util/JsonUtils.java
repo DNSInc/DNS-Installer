@@ -10,6 +10,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.*;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -25,19 +26,17 @@ public class JsonUtils {
 
         if(!oldProfile.exists()) {
 
-            System.out.println("Please run minecraft once before trying to install the pack");
+            JOptionPane.showMessageDialog("Please run minecraft once before trying to install the pack");
         }
 
         FileUtils.copyFile(oldProfile, new File(mcDir, "/launcher_Profiles_backup.json"), true);
-//        oldProfile.renameTo(new File(mcDir, "/launcher_profiles_backup.json"));
         System.out.println("Creating A Backup Of User Profiles");
 
         JdomParser profileParser = new JdomParser();
         JsonRootNode profileNode = null;
 
         try {
-
-//            System.out.println(oldProfile.getCanonicalPath());
+            
             Reader reader = new FileReader(oldProfile);
 
             profileNode = profileParser.parse(reader);
@@ -77,24 +76,7 @@ public class JsonUtils {
             InstallerUtils.shutdown(e);
         }
 
-//        JsonWriter writer = new JsonWriter(new FileWriter(newProfile.getCanonicalFile()));
-//
-//        writer.setIndent("    ");
-//        writer.beginObject();
-//        writer.name("profiles");
-//        writer.beginObject();
-//        writer.name("Dns Techpack");
-//        writer.beginObject();
-//        writer.name("name").value("DNS Techpack");
-//        writer.name("gameDir").value(InstallerUtils.dnsDefault.toString());
-//        writer.name("lastVersionId").value(InstallerUtils.settings.getMCVersion() + "-DNS" + InstallerUtils.settings.getDNSVersion());
-//        writer.endObject();
-//        writer.endObject();
-//        writer.name("selectedProfile").value("Dns Techpack");
-//        writer.endObject();
-//        writer.close();
         System.out.print("Adding DNS Profile");
         InstallerPanel.progress.setValue(90);
-//        newProfile.renameTo(new File(InstallerUtils.mcDefault + "/launcher_profiles.json"));
     }
 }
