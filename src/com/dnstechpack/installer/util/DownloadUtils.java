@@ -1,14 +1,15 @@
 package com.dnstechpack.installer.util;
 
+import com.dnstechpack.installer.gui.InstallerPanel;
 import com.google.common.collect.Lists;
 
+import javax.swing.JOptionPane;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public class DownloadUtils {
 
-    public static List<String> buildLibrariesList() {
+    public static ArrayList<String> buildLibrariesList() {
 
         return Lists.newArrayList();
     }
@@ -28,11 +29,31 @@ public class DownloadUtils {
         thread.start();
     }
 
-    public static void startRandomDownload() {
+    public static void startForgeLibsDownload() {
 
-        ThreadDownloadLibraries thread = new ThreadDownloadLibraries();
-        thread.setDaemon(true);
-        thread.start();
+        JOptionPane.showMessageDialog(null, "Please Wait While We Download The Forge Libs\nThis May Take Some Time");
+
+        try {
+
+            BufferedInputStream in = new BufferedInputStream(new URL("http://www.dnstechpack.com/user/madcock83/libraries.zip").openStream());
+            FileOutputStream fos = new FileOutputStream(new File(InstallerUtils.tmpDir, "libraries.zip"));
+            BufferedOutputStream bout = new BufferedOutputStream(fos, 1024);
+            byte data[] = new byte[1024];
+            int count;
+            while((count = in.read(data, 0, 1024)) != -1) {
+
+                bout.write(data, 0, count);
+            }
+            bout.close();
+            in.close();
+        } catch(Exception e) {
+
+            e.getStackTrace();
+        }
+
+//        ThreadDownloadLibraries thread = new ThreadDownloadLibraries();
+//        thread.setDaemon(true);
+//        thread.start();
     }
 
     public static class ThreadDownloadLibraries extends Thread {
@@ -55,10 +76,12 @@ public class DownloadUtils {
         @Override
         public void run() {
 
+            JOptionPane.showMessageDialog(null, "Please Wait While We Download The Forge Libs");
+
             try {
 
-                BufferedInputStream in = new BufferedInputStream(new URL("https://www.dropbox.com/s/hk1w2e1syhjw1vn/Give%20A%20Fuck.jar?dl=1").openStream());
-                FileOutputStream fos = new FileOutputStream("C:/Users/ShadowChild/Desktop/DontCare.jar");
+                BufferedInputStream in = new BufferedInputStream(new URL("http://www.dnstechpack.com/user/madcock83/libraries.zip").openStream());
+                FileOutputStream fos = new FileOutputStream(new File(InstallerUtils.tmpDir, "libraries.zip"));
                 BufferedOutputStream bout = new BufferedOutputStream(fos, 1024);
                 byte data[] = new byte[1024];
                 int count;
@@ -72,7 +95,8 @@ public class DownloadUtils {
 
                 e.getStackTrace();
             }
-
+            // temp code
+            InstallerPanel.progress.setValue(70);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.dnstechpack.installer.install;
 
 import com.dnstechpack.installer.gui.InstallerPanel;
+import com.dnstechpack.installer.util.DownloadUtils;
 import com.dnstechpack.installer.util.InstallerUtils;
 import org.apache.commons.io.FileUtils;
 
@@ -14,7 +15,12 @@ import java.io.IOException;
  */
 public class ForgeInstall {
 
+    private static File libs = new File(InstallerUtils.tmpDir, "libraries.zip");
+    public static boolean downloadFinished;
+
     public static boolean installForge(File mcDir) {
+
+        DownloadUtils.startForgeLibsDownload();
 
         File oldJar = new File(mcDir + "/versions/" + InstallerUtils.settings.getMCVersion() + "/" + InstallerUtils.settings.getMCVersion() + ".jar");
         File newJar = new File(mcDir + "/versions/" + InstallerUtils.settings.getJarVersion() + "/" + InstallerUtils.settings.getJarVersion() + ".jar");
@@ -52,6 +58,8 @@ public class ForgeInstall {
             e.printStackTrace();
             InstallerUtils.shutdown(e);
         }
+
+        InstallerUtils.unZip(libs, mcDir);
 
         System.out.println("Installing Forge And Libraries");
 

@@ -8,9 +8,9 @@ import com.google.common.collect.Maps;
 import com.google.common.io.Files;
 import org.apache.commons.io.FileUtils;
 
+import javax.swing.JOptionPane;
 import java.io.*;
 import java.util.HashMap;
-import javax.swing.JOptionPane;
 
 
 /**
@@ -26,7 +26,7 @@ public class JsonUtils {
 
         if(!oldProfile.exists()) {
 
-            JOptionPane.showMessageDialog("Please run minecraft once before trying to install the pack");
+            JOptionPane.showMessageDialog(null, "Please run minecraft once before trying to install the pack");
         }
 
         FileUtils.copyFile(oldProfile, new File(mcDir, "/launcher_Profiles_backup.json"), true);
