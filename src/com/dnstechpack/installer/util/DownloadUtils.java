@@ -21,9 +21,9 @@ public class DownloadUtils {
         return Lists.newArrayList();
     }
 
-    public static void downloadLibraries(ArrayList<String> libraries, File tmpDir, File minecraftDir) {
+    public static void downloadLibraries(File tmpDir, File minecraftDir) {
 
-        ThreadDownloadLibraries thread = new ThreadDownloadLibraries(libraries, tmpDir, minecraftDir);
+        ThreadDownloadLibraries thread = new ThreadDownloadLibraries(buildLibrariesList(), tmpDir, minecraftDir);
         thread.setDaemon(true);
         thread.start();
     }
